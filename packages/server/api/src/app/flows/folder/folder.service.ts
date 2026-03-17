@@ -119,6 +119,15 @@ export const flowFolderService = (log: FastifyBaseLogger) => ({
             numberOfFlows,
         }
     },
+    async getOneById(id: string): Promise<Folder | null> {
+        const folder = await folderRepo().findOneBy({ id })
+
+        if (isNil(folder)) {
+            return null
+        }
+
+        return folder
+    }
 })
 
 type DeleteParams = {
